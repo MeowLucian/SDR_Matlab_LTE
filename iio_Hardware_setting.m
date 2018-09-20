@@ -5,7 +5,7 @@ function [s,input] = iio_Hardware_setting(IP,txWaveform,CenterFrequency,rmc)
     s.in_ch_no = 2;     % 2 for I and Q input Channel (1st Antenna)
     s.out_ch_no = 2;    % 2 for I and Q output Channel (1st Antenna)
     s.in_ch_size = length(txWaveform);
-    s.out_ch_size = length(txWaveform)*2;
+    s.out_ch_size = 153600*2;
     s = s.setupImpl();
     fir_data_file = 'LTE10_MHz.ftr';
     s.writeFirData(fir_data_file); % Configure the FIR filter

@@ -1,16 +1,18 @@
 function [] = OFDM_RX(rxWaveform,rmc,rssi)
 try
-    set(gcf,'Units','centimeters','position',[1 2 49 24]); % Set the postion of GUI
+    set(gcf,'Units','centimeters','position',[1 2 36 24]); % Set the postion of GUI
     %% RX-Raw Plot
-    subplot(2,4,1),plot(rxWaveform,'.');title('RX-Raw');
+    subplot(2,3,1),plot(rxWaveform,'.');
+    title(['RX-Raw',' , RSSI = ',num2str(rssi)]);
     axis square;
     Raw_window_scale = 0.07;
     axis([-Raw_window_scale,Raw_window_scale,-Raw_window_scale,Raw_window_scale]);
     drawnow;
     %% Welch Power Spectral Density Plot
     [Spectrum_waveform,Welch_Spectrum_frequency] = pwelch(rxWaveform,[],[],[],rmc.SamplingRate,'centered','power');
-    subplot(2,4,2),plot(Welch_Spectrum_frequency,pow2db(Spectrum_waveform));
-    title(['Welch Power Spectral Density',' , RSSI = ',num2str(rssi)]);
+    subplot(2,3,2),plot(Welch_Spectrum_frequency,pow2db(Spectrum_waveform));
+    title('Welch Power Spectral Density');
+    axis square;
     drawnow;
     %% Derived parameters
     samplesPerFrame = 10e-3*rmc.SamplingRate; % 153600 samples, LTE frames period is 10 ms
@@ -36,21 +38,14 @@ try
 %     enb.NCellID = NCellID; % From lteCellSearch
 
     [frameOffset,corr] = lteDLFrameOffset(enb,rxWaveform);
-    
-%     subplot(2,4,3),plot(abs(rxWaveform));
-%     hold on;
-%     subplot(2,4,3),plot(1:length(rxWaveform),[zeros(frameOffset,1);0.18;zeros(length(rxWaveform)-frameOffset-1,1)])
-%     hold off;
-%     axis square;
-%     drawnow;
-% 
-%     subplot(2,4,4),plot(corr);
-%     hold on;
-%     subplot(2,4,4),plot(1:length(rxWaveform),[zeros(frameOffset,1);0.18;zeros(length(rxWaveform)-frameOffset-1,1)]);
-%     hold off;
-%     axis square;
-%     title('Packet Detection');
-%     drawnow;
+
+    subplot(2,3,3),plot(corr);
+    hold on;
+    subplot(2,3,3),plot(1:length(rxWaveform),[zeros(frameOffset,1);0.18;zeros(length(rxWaveform)-frameOffset-1,1)]);
+    hold off;
+    axis square;
+    title('Packet Detection');
+    drawnow;
     
     % Sync the captured samples to the start of an LTE frame, and trim off any samples that are part of an incomplete frame.
     rxWaveform2 = rxWaveform(frameOffset+1:frameOffset+153600); % [307200x1] -> [153600x1]
@@ -154,7 +149,7 @@ try
                 txSymbols = [txSymbols; refSymbols{:}];
                 
                 % Current constellation
-                subplot(2,4,5),plot(rxEncodedSymb{:},'.');
+                subplot(2,3,4),plot(rxEncodedSymb{:},'.');
                 axis square;
                 axis([-1.5 1.5 -1.5 1.5]);
                 title('Constellation');
@@ -193,7 +188,7 @@ try
     decdata = uint8(bin2dec(str));
     receivedImage = reshape(decdata,[102,102,3]); % imsize : [102,102,3]
     % Plot received image
-    subplot(2,4,6),imshow(receivedImage);
+    subplot(2,3,5),imshow(receivedImage);
     title('Received Image');
     axis square;
     drawnow;
