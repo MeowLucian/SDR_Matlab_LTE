@@ -20,7 +20,8 @@ Please open Matlab windows to run
 # GUI_RX
 ![Program GUI_RX](Readme_image/GUI_RX.png)
 Video Demo : https://youtu.be/jywNhMAHi7Y
-![Program GUI gif](Readme_image/GUI_gif.gif)
+
+![Program GUI gif](https://raw.githubusercontent.com/MeowLucian/SDR_Matlab_LTE/master/Readme_image/GUI_gif.gif)
 
 ## TX RX Hardware Parameters
 | Center Frequency                 | 2.4 GHz                          |
