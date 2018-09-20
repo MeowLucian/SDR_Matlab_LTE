@@ -10,6 +10,7 @@ Transmitter and Receiver hardware : Zedboard (Xilinx Zynq®-7000) + AD9361 (Anal
 # Software needed :
 
 * Matlab (R2018a version in this example)
+* [Libiio Library](https://github.com/analogdevicesinc/libiio/releases)
 * [Zynq Linux Image](https://wiki.analog.com/resources/tools-software/linux-software/zynq_images) (2015_R2-2016_07_26 version in this example)
 
 # Code Structure :
