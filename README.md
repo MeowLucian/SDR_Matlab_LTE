@@ -52,7 +52,7 @@ Then, use router DHCP hand setting mode to distribute network configuration para
 # Hardware shut down process
 To shut down the hardware properly, execute the commands below.
 
-Enter Linux by ssh
+Enter Linux by ssh :
 ```
 ssh analog@192.168.3.X
 ```
