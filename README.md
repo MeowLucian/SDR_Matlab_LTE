@@ -31,7 +31,7 @@ Video Demo : https://youtu.be/jywNhMAHi7Y
 | Sampling Rate                    | 15.36 MS/s                       |
 | Mapping                          | 64 QAM                           |
 | FFT Size                         | 1024                             |
-| Cyclic Prefix Length             | 512                              |
+| Cyclic Prefix Length             | 80 (symbol#0), 72(symbol#1~6)    |
 | Resource Block                   | 50                               |
 | Samples Per Frame                | 307200                           |
 | PC Host IP address               | 192.168.3.1                      |
